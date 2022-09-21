@@ -1,0 +1,18 @@
+<div class="add-task">
+    <h3>Add Project</h3>
+
+    <form (ngSubmit)="createTask()" [formGroup]="createTaskForm">
+        <label>Title:</label>
+        <input
+            type="text"
+            formControlName="title"
+            placeholder="Title..."
+        />
+        <label>Description:</label>
+        <textarea
+            type="text"
+            formControlName="description">
+        </textarea>
+        <button type="submit">Submit</button>
+    </form>
+</div>

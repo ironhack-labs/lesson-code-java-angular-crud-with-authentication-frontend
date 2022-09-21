@@ -1,0 +1,19 @@
+<app-nav-bar></app-nav-bar>
+<app-add-task [projectId]="project.id" (taskCreatedEvent)="reloadProject()"></app-add-task>
+<div class="project-details">
+    <h1>{{ project.title }}</h1>
+    <p>{{ project.description }}</p>
+    
+    <div class="task-card card" *ngFor="let task of project.tasks">
+        <h3>{{ task.title }}</h3>
+        <h4>Description:</h4>
+        <p>{{ task.description }}</p>
+    </div>
+
+    <a [routerLink]="['/projects']">
+        <button>Back to projects</button>    
+    </a>
+    <a [routerLink]="['/projects', project.id, 'edit']">
+        <button>Edit project</button>    
+    </a>
+</div>

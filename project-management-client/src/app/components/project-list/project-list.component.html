@@ -1,0 +1,8 @@
+<app-nav-bar></app-nav-bar>
+<app-add-project (projectCreatedEvent)="updateProjectList()"></app-add-project>
+<div class="project-list">
+    <div class="project-card card" *ngFor="let project of projects">
+        <h3><a [routerLink]="['/projects', project.id]">{{ project.title }} </a></h3>
+        <p>{{ project.description }}</p>
+    </div>
+</div>
