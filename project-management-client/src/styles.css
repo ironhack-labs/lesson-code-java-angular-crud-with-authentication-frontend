@@ -12,6 +12,7 @@ a {
   color: white;
   margin: 0 1em;
   text-decoration: none;
+  cursor: pointer;
 }
 .navbar {
   background: #515f7d;

@@ -13,6 +13,6 @@
             type="text"
             formControlName="description">
         </textarea>
-        <button type="submit">Submit</button>
+        <button type="submit" [disabled]="createTaskForm.invalid">Submit</button>
     </form>
 </div>

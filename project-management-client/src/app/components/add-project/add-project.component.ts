@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Project } from 'src/app/models/project.model';
 import { ProjectManagementAPIService } from 'src/app/services/project-management-api.service';
 
@@ -20,8 +20,8 @@ export class AddProjectComponent implements OnInit {
   constructor(
     private projectManagementAPIService: ProjectManagementAPIService
   ) {
-    this.titleInput = new FormControl('', []);
-    this.descriptionInput = new FormControl('', []);
+    this.titleInput = new FormControl('', [Validators.required]);
+    this.descriptionInput = new FormControl('', [Validators.required]);
     this.createProjectForm = new FormGroup({
       title: this.titleInput,
       description: this.descriptionInput,
@@ -39,6 +39,10 @@ export class AddProjectComponent implements OnInit {
     // Store project in database
     this.projectManagementAPIService.createProject(project).subscribe({
       next: () => {
+
+        // Reset form
+        this.titleInput.setValue('');
+        this.descriptionInput.setValue('');
 
         // Update project list
         this.projectCreatedEvent.emit();

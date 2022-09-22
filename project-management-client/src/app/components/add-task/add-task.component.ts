@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Project } from 'src/app/models/project.model';
 import { Task } from 'src/app/models/task.model';
 import { ProjectManagementAPIService } from 'src/app/services/project-management-api.service';
@@ -24,8 +24,8 @@ export class AddTaskComponent implements OnInit {
   constructor(
     private projectManagementAPIService: ProjectManagementAPIService
   ) {
-    this.titleInput = new FormControl('', []);
-    this.descriptionInput = new FormControl('', []);
+    this.titleInput = new FormControl('', [Validators.required]);
+    this.descriptionInput = new FormControl('', [Validators.required]);
     this.createTaskForm = new FormGroup({
       title: this.titleInput,
       description: this.descriptionInput,
@@ -43,6 +43,10 @@ export class AddTaskComponent implements OnInit {
     // Store task in database
     this.projectManagementAPIService.createTask(task).subscribe({
       next: () => {
+
+        // Reset form
+        this.titleInput.setValue('');
+        this.descriptionInput.setValue('');
 
         // Trigger event to update task list
         this.taskCreatedEvent.emit();
