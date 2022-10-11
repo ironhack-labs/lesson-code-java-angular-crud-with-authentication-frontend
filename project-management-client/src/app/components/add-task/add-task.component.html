@@ -1,5 +1,5 @@
 <div class="add-task">
-    <h3>Add Project</h3>
+    <h3>Add Task</h3>
 
     <form (ngSubmit)="createTask()" [formGroup]="createTaskForm">
         <label>Title:</label>
@@ -11,7 +11,8 @@
         <label>Description:</label>
         <textarea
             type="text"
-            formControlName="description">
+            formControlName="description"
+            placeholder="Description...">
         </textarea>
         <button type="submit" [disabled]="createTaskForm.invalid">Submit</button>
     </form>
